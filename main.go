@@ -41,15 +41,15 @@ func main() {
 
 func loadEnv() {
 	if err := godotenv.Load(); err != nil {
-		dev := os.Getenv("DEV")
-		if len(dev) == 0 {
-			log.Fatal("$DEV must be set")
+		origin := os.Getenv("ORIGIN")
+		if len(origin) == 0 {
+			log.Fatal("$ORIGIN must be set")
 		}
 		log.Println(".env file loaded successfully")
 	} else {
-		dev := os.Getenv("DEV")
-		if len(dev) == 0 {
-			log.Fatal("$DEV must be set")
+		origin := os.Getenv("ORIGIN")
+		if len(origin) == 0 {
+			log.Fatal("$ORIGIN must be set")
 		}
 		log.Println(".env file loaded successfully")
 	}
