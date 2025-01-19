@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/joho/godotenv"
 )
@@ -33,6 +34,7 @@ func main() {
 	r := chi.NewRouter()
 
 	addCors(r)
+	addMiddleware(r)
 
 	routes.MountRoutes(r, h)
 
@@ -80,6 +82,10 @@ func addCors(r *chi.Mux) {
 		AllowCredentials: false,
 		MaxAge:           300,
 	}))
+}
+
+func addMiddleware(r *chi.Mux) {
+	r.Use(middleware.Logger)
 }
 
 func gracefullyServe(r *chi.Mux) {
